@@ -106,6 +106,9 @@ open class MenuContainerViewController: UIViewController {
 
         let viewBounds = CGRect(x:0, y:0, width:size.width, height:size.height)
         let viewCenter = CGPoint(x:size.width/2, y:size.height/2)
+        if self.isShown {
+            self.hideSideMenu()
+        }
         coordinator.animate(alongsideTransition: { _ in
             if self.menuViewController == nil {
                 fatalError("Invalid `menuViewController` value. It should not be nil")
@@ -114,9 +117,7 @@ open class MenuContainerViewController: UIViewController {
             self.menuViewController.view.center = viewCenter
             self.view.bounds = viewBounds
             self.view.center = viewCenter
-            if self.isShown {
-                self.hideSideMenu()
-            }
+            
         }, completion: nil)
     }
 }
